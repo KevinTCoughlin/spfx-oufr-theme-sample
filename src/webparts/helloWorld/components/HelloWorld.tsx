@@ -1,25 +1,66 @@
 import * as React from 'react';
-import styles from './HelloWorld.module.scss';
 import { IHelloWorldProps } from './IHelloWorldProps';
-import { escape } from '@microsoft/sp-lodash-subset';
+
+import { Customizer, ICustomizerProps } from '@uifabric/utilities';
+
+import { createTheme, ITheme } from 'office-ui-fabric-react/lib/Styling';
+import { IDocumentCardPreviewProps, DocumentCard, DocumentCardPreview, DocumentCardTitle, DocumentCardActivity, PrimaryButton } from 'office-ui-fabric-react';
+
+export const theme: ITheme = createTheme({
+  palette: {
+    themePrimary: "#6264a7",
+    themeLighterAlt: "#f7f7fb",
+    themeLighter: "#e1e1f1",
+    themeLight: "#c8c9e4",
+    themeTertiary: "#989ac9",
+    themeSecondary: "#7173b0",
+    themeDarkAlt: "#585a95",
+    themeDark: "#4a4c7e",
+    themeDarker: "#37385d",
+    neutralLighterAlt: "#f8f8f8",
+    neutralLighter: "#f4f4f4",
+    neutralLight: "#eaeaea",
+    neutralQuaternaryAlt: "#dadada",
+    neutralQuaternary: "#d0d0d0",
+    neutralTertiaryAlt: "#c8c8c8",
+    neutralTertiary: "#c2c2c2",
+    neutralSecondary: "#858585",
+    neutralPrimaryAlt: "#4b4b4b",
+    neutralPrimary: "#333",
+    neutralDark: "#272727",
+    black: "#1d1d1d",
+    white: "#fff"
+  },
+  semanticColors: {
+    bodyBackground: "#fff",
+    bodyText: "#333"
+  }
+});
+
+const themeCustomizations: ICustomizerProps = {
+  settings: {
+    theme
+  }
+};
 
 export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
-  public render(): React.ReactElement<IHelloWorldProps> {
+  public render(): JSX.Element {
+    const previewProps: IDocumentCardPreviewProps = {
+      previewImages: [
+        {
+          previewImageSrc: String(require('./document-preview.png')),
+          iconSrc: String(require('./icon-ppt.png')),
+          width: 318,
+          height: 196,
+          accentColor: '#ce4b1f'
+        }
+      ],
+    };
+
     return (
-      <div className={ styles.helloWorld }>
-        <div className={ styles.container }>
-          <div className={ styles.row }>
-            <div className={ styles.column }>
-              <span className={ styles.title }>Welcome to SharePoint!</span>
-              <p className={ styles.subTitle }>Customize SharePoint experiences using Web Parts.</p>
-              <p className={ styles.description }>{escape(this.props.description)}</p>
-              <a href="https://aka.ms/spfx" className={ styles.button }>
-                <span className={ styles.label }>Learn more</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Customizer {...themeCustomizations}>
+        <PrimaryButton text="Hello World" />
+      </Customizer>
     );
   }
 }
