@@ -4,7 +4,7 @@ import { IHelloWorldProps } from './IHelloWorldProps';
 import { Customizer, ICustomizerProps } from '@uifabric/utilities';
 
 import { createTheme, ITheme } from 'office-ui-fabric-react/lib/Styling';
-import { IDocumentCardPreviewProps, DocumentCard, DocumentCardPreview, DocumentCardTitle, DocumentCardActivity, PrimaryButton } from 'office-ui-fabric-react';
+import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 
 export const theme: ITheme = createTheme({
   palette: {
@@ -45,18 +45,6 @@ const themeCustomizations: ICustomizerProps = {
 
 export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
   public render(): JSX.Element {
-    const previewProps: IDocumentCardPreviewProps = {
-      previewImages: [
-        {
-          previewImageSrc: String(require('./document-preview.png')),
-          iconSrc: String(require('./icon-ppt.png')),
-          width: 318,
-          height: 196,
-          accentColor: '#ce4b1f'
-        }
-      ],
-    };
-
     return (
       <Customizer {...themeCustomizations}>
         <PrimaryButton text="Hello World" />
