@@ -6,7 +6,7 @@ import { Customizer, ICustomizerProps } from '@uifabric/utilities';
 import { createTheme, ITheme } from 'office-ui-fabric-react/lib/Styling';
 import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 
-export const theme: ITheme = createTheme({
+const theme: ITheme = createTheme({
   palette: {
     themePrimary: "#6264a7",
     themeLighterAlt: "#f7f7fb",
